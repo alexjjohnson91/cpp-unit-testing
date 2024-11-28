@@ -12,7 +12,7 @@ SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 # Generate object file names from source files
 OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
-all: run
+all: $(TARGET)
 
 run: $(TARGET)
 	$(TARGET)

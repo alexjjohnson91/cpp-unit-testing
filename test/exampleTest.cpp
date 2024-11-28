@@ -1,13 +1,5 @@
+#include "../src/Solution.h"
 #include "../src/cppunit.h"
-
-class test_class {
-public:
-  int calculate() {
-    int n, m;
-    std::cin >> n >> m;
-    return n + m;
-  }
-};
 
 // Test examples.
 class Cppunit_tests : public Cppunit {
@@ -24,8 +16,7 @@ class Cppunit_tests : public Cppunit {
            "ab");
 
     // Stdin override example.
-    test_cin("2\n2");
-    CHECK((new test_class)->calculate(), 4);
+    CHECK((new Solution)->add(2, 2), 4);
   }
 };
 int main() { return (new Cppunit_tests)->run(); }

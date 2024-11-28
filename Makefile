@@ -9,10 +9,12 @@ TARGET = $(BIN_DIR)/my_program
 TEST_TARGET = $(BIN_DIR)/test_runner
 
 # Find all source files
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+MAIN_SRC = src/main.cpp
+SRCS = $(filter-out $(MAIN_SRC), $(wildcard $(SRC_DIR)/*.cpp))
 TEST_SRCS = $(wildcard $(TEST_DIR)/*.cpp)
 
 # Generate object file names from source files
+MAIN_OBJ = obj/main.o
 OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp, $(OBJ_DIR)/test_%.o, $(TEST_SRCS))
 
@@ -20,7 +22,7 @@ TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp, $(OBJ_DIR)/test_%.o, $(TEST_SRCS))
 all: $(TARGET)
 
 # Build the main application
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) $(MAIN_OBJ)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 

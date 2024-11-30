@@ -4,19 +4,15 @@
 // Test examples.
 class Cppunit_tests : public Cppunit {
   void single_test() {
-    // Integral type match check.
-    CHECK(2 + 2, 4);
+    // Arrange
+    Solution solution;
+    unsigned expected = 4;
 
-    // Boolean type value check.
-    CHECKT(2 + 2 == 4);
+    // Act
+    unsigned actual = solution.add(1, 3);
 
-    // String match check.
-    CHECKS("a"
-           "b",
-           "ab");
-
-    // Stdin override example.
-    CHECK((new Solution)->add(2, 2), 4);
+    // Assert
+    CHECK(actual, expected);
   }
 };
 int main() { return (new Cppunit_tests)->run(); }
